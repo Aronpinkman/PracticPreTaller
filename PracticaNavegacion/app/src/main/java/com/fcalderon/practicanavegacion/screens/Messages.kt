@@ -17,7 +17,6 @@ import com.fcalderon.practicanavegacion.viewmodel.MessageViewModel
 fun Messages(navController: NavController, viewModel: MessageViewModel) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    val scaffoldState = rememberScaffoldState()
     val successMessage by viewModel.message.collectAsState()
     Scaffold(
         topBar = {
@@ -60,9 +59,5 @@ fun Messages(navController: NavController, viewModel: MessageViewModel) {
             }
         }
     }
-    LaunchedEffect(successMessage) {
-        if (successMessage.isNotEmpty()) {
-            scaffoldState.snackbarHostState.showSnackbar(successMessage)
+
         }
-    }
-}
