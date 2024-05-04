@@ -27,9 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chavezycanjura.taller1canjuraalejandro.components.BottomBarNavigation
 import com.chavezycanjura.taller1canjuraalejandro.navigation.AppNavigation
-import com.chavezycanjura.taller1canjuraalejandro.screens.Task
-import com.chavezycanjura.taller1canjuraalejandro.screens.CreateTask
-import com.chavezycanjura.taller1canjuraalejandro.screens.TaskDetails
+
 import com.chavezycanjura.taller1canjuraalejandro.ui.theme.Taller1CanjuraAlejandroTheme
 
 
