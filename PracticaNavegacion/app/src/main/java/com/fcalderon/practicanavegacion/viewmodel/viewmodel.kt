@@ -9,23 +9,18 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-// En com.fcalderon.practicanavegacion.viewmodel
 class MessageViewModel(private val repository: MessageRepository) : ViewModel() {
-
-    private val _messages = MutableStateFlow<List<Message>>(emptyList())
-    val messages: StateFlow<List<Message>> = _messages.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            repository.getMessages().collect { listOfMessages ->
-                _messages.value = listOfMessages
-            }
-        }
-    }
+    private val _message = MutableStateFlow("")
+    val message: StateFlow<String> = _message.asStateFlow()
 
     fun saveMessage(title: String, description: String) {
         viewModelScope.launch {
             repository.saveMessage(Message(title, description))
+        }
+        viewModelScope.launch {
+            repository.saveSuccess.collect {
+                _message.value = it
+            }
         }
     }
 }

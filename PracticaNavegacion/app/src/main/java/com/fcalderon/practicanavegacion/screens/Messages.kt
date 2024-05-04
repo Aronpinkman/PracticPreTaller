@@ -11,12 +11,14 @@ import androidx.navigation.NavController
 import com.fcalderon.practicanavegacion.components.BottomBarNavigation
 import com.fcalderon.practicanavegacion.viewmodel.MessageViewModel
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Messages(navController: NavController, viewModel: MessageViewModel) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-
+    val scaffoldState = rememberScaffoldState()
+    val successMessage by viewModel.message.collectAsState()
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -56,6 +58,11 @@ fun Messages(navController: NavController, viewModel: MessageViewModel) {
             ) {
                 Text("Guardar", fontSize = 18.sp)
             }
+        }
+    }
+    LaunchedEffect(successMessage) {
+        if (successMessage.isNotEmpty()) {
+            scaffoldState.snackbarHostState.showSnackbar(successMessage)
         }
     }
 }
